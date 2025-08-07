@@ -51,6 +51,9 @@ if mode == "bar":
         fft_data[fft_data < threshold] = threshold
         fft_data = np.log10(fft_data)
 
+        #max_idx = np.argmax(fft_data)
+        #print(freqs[max_idx])
+
         top_indicies = np.argpartition(fft_data, -5)[-5:]
         top_indicies = top_indicies[np.argsort(-fft_data[top_indicies])]
 
@@ -104,6 +107,9 @@ elif mode == "spec":
         fft_data = np.maximum(fft_data, threshold)
         fft_data = np.log10(fft_data)
 
+        #max_idx = np.argmax(fft_data)
+        #print(freqs[max_idx])
+
         spec_data[:-1] = spec_data[1:]
         spec_data[-1, :] = fft_data
 
@@ -131,6 +137,9 @@ else:
 
         fft_data = np.abs(np.fft.rfft(samples))
         fft_data[fft_data < threshold] = threshold
+
+        #max_idx = np.argmax(fft_data)
+        #print(freqs[max_idx])
 
         top_indicies = np.argpartition(fft_data, -5)[-5:]
         top_indicies = top_indicies[np.argsort(-fft_data[top_indicies])]
